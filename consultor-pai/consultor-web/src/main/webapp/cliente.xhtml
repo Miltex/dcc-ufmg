@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastro de Clientes</title>
+</h:head>
+<h:body>
+    <h:form id="form">
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate/>
+        </p:messages>
+
+        <p:panel header="Cadastro de Cliente">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome" for="nome"/>
+                <p:inputText id="nome" value="#{clienteController.cliente.nome}" required="true"/>
+
+                <p:outputLabel value="Sexo" for="sexo"/>
+                <p:inputText id="sexo" value="#{clienteController.cliente.sexo}" required="true"/>
+
+                <p:outputLabel value="Idade" for="idade"/>
+                <p:inputNumber id="idade" value="#{clienteController.cliente.idade}" required="true"/>
+
+                <p:outputLabel value="Altura" for="altura"/>
+                <p:inputNumber id="altura" value="#{clienteController.cliente.altura}" required="true"/>
+
+                <p:commandButton value="Salvar" actionListener="#{clienteController.salvar}" update="form:tabela"/>
+            </p:panelGrid>
+        </p:panel>
+
+        <p:dataTable id="tabela" var="cliente" value="#{clienteController.clientes}" style="margin-top: 20px">
+            <p:column headerText="ID">
+                <h:outputText value="#{cliente.id}"/>
+            </p:column>
+            <p:column headerText="Nome">
+                <h:outputText value="#{cliente.nome}"/>
+            </p:column>
+            <p:column headerText="Sexo">
+                <h:outputText value="#{cliente.sexo}"/>
+            </p:column>
+            <p:column headerText="Idade">
+                <h:outputText value="#{cliente.idade}"/>
+            </p:column>
+            <p:column headerText="Altura">
+                <h:outputText value="#{cliente.altura}"/>
+            </p:column>
+            <p:column headerText="Ações">
+                <p:commandButton value="Editar" update="@form" actionListener="#{clienteController.setCliente(cliente)}"/>
+                <p:commandButton value="Remover" actionListener="#{clienteController.remover(cliente.id)}" update="form:tabela"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
