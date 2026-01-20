@@ -2,7 +2,7 @@
 
 ## Contexto Técnico para o Desenvolvedor
 Este é um projeto Java Enterprise Edition focado em alta escalabilidade e conformidade com os padrões Jakarta EE. O desenvolvedor é um perfil **Senior**, portanto, priorize soluções que utilizem design patterns (SOLID, Clean Code), performance de memória e segurança.
-
+Numca realizar operações no git sem a revisão do operador. Nunca realizar commits automaticos.
 ## Stack Tecnológica
 - **Linguagem:** Java 11
 - **Framework:** Jakarta EE 10 (Full Profile)
