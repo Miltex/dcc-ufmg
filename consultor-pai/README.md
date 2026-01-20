@@ -1,4 +1,4 @@
-# Consultor Pai - Aplicação CRUD Jakarta EE 10
+# Aplicação Jakarta EE 10
 
 Este projeto é uma aplicação multi-módulos Jakarta EE 10 demonstrando uma funcionalidade CRUD (Criar, Ler, Atualizar, Deletar) básica para uma entidade `Cliente`. Ele aproveita as especificações modernas do Java EE, Maven para gerenciamento de build, Wildfly como servidor de aplicação, JPA para persistência e JSF com PrimeFaces para a interface de usuário web.
 
