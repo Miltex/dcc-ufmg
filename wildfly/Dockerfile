@@ -28,4 +28,4 @@ RUN \
   rm /tmp/datasource_setup.cli
 
 # Copy the application EAR. This should be the last step.
-COPY CRUD-ear/target/CRUD-ear.ear /opt/jboss/wildfly/standalone/deployments/
+COPY consultor-ear/target/consultor-ear.ear /opt/jboss/wildfly/standalone/deployments/

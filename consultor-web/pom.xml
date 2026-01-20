@@ -36,7 +36,7 @@
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>5.0.0</version> <!-- Compatible with Jakarta EE 10 -->
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Bundle Jakarta Faces API and Implementation -->
@@ -44,22 +44,19 @@
             <groupId>jakarta.faces</groupId>
             <artifactId>jakarta.faces-api</artifactId>
             <version>4.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.faces</artifactId>
-            <version>4.0.1</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Bundle PrimeFaces (Jakarta EE 10 compatible version) -->
+        <!-- PrimeFaces 15 or 16 for Jakarta EE -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>11.0.0</version>
-            <scope>compile</scope>
+            <version>15.0.0</version>
+            <!-- Classifier needed for PF 15; omit for PF 16+ -->
+            <classifier>jakarta</classifier>
         </dependency>
+
     </dependencies>
 
     <build>
