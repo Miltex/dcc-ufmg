@@ -7,6 +7,7 @@ Arquillian, por realizar testes de integração, deve ser gerenciado pelo maven-
 sufixo IT durante a fase integration-test do ciclo de vida. As classes de testes de integrações devem estar no 
 diretorio src/test/java. Embora não seja uma regra técnica rígida para a classe, é uma convenção forte que o método anotado
 com @Deployment tenha um nome descritivo. Os testes devem ser executados quando rodar o comando mvn test após o 
-ambiente conteinerizado subir após a construção da imagem do wildfly.
-No projeto tem um dockerfile que constroi um container com a imagem wildfly:latest-jdk11. Temos uma stack necessaria, com o
+ambiente conteinerizado subir e após a construção da imagem do wildfly.
+No projeto tem um dockerfile que constroi um container com a imagem wildfly:latest-jdk11. Temos uma stack (docker-compose) necessaria, com o
 banco de dados mariadb, phpmyadmin e o wildfly. Antes de rodar os testes de integração temos que subir esse ambinete containerizado.
+O arquillian deverar rodar no ambiente conteinerizado de forma apartada.
