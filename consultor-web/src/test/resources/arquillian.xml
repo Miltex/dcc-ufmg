@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://www.jboss.org/schema/arquillian"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.jboss.org/schema/arquillian http://www.jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <container qualifier="wildfly-remote" default="true">
+        <configuration>
+            <property name="managementAddress">127.0.0.1</property>
+            <property name="managementPort">9990</property>
+            <property name="username">admin</property>
+            <property name="password">admin</property>
+        </configuration>
+    </container>
+
+    <extension qualifier="webdriver">
+        <property name="browser">htmlUnit</property>
+    </extension>
+
+</arquillian>

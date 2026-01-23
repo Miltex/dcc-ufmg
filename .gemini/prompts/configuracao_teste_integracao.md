@@ -1,4 +1,7 @@
 ## Configuração de Testes de Integração Automatizados
+Configurar testes de integração neste projeto dcc-ufmg utilizando o jakarta ee 10 com o wildfly em container.
+
+
 Criar testes de integração no projeto Jakarta EE 10.
 Gerenciar o lifecycle atraves do maven utilizando o Arquillian.
 Realizar configurações necessárias ao arquivos de configurações como o pom.xml. 
