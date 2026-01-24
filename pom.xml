@@ -24,6 +24,7 @@
         <arquillian.graphene.version>2.3.2</arquillian.graphene.version>
         <selenium.version>3.14.0</selenium.version>
         <jacoco.version>0.8.11</jacoco.version>
+        <arquillian.transaction.version>2.0.0</arquillian.transaction.version>
     </properties>
 
     <modules>
@@ -45,6 +46,13 @@
                 <groupId>org.jboss.arquillian.extension</groupId>
                 <artifactId>arquillian-drone-bom</artifactId>
                 <version>${arquillian.drone.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-transaction-bom</artifactId>
+                <version>${arquillian.transaction.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

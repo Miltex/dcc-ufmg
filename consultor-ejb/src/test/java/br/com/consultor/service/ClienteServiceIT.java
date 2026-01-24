@@ -3,10 +3,11 @@ package br.com.consultor.service;
 import br.com.consultor.entity.Cliente;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +16,7 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ExtendWith(ArquillianExtension.class)
+@Transactional(TransactionMode.ROLLBACK)
 public class ClienteServiceIT {
 
     @Deployment
