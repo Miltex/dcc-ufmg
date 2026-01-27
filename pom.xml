@@ -26,6 +26,19 @@
         <jacoco.version>0.8.11</jacoco.version>
         <arquillian.transaction.version>2.0.0</arquillian.transaction.version>
         <byte-buddy.version>1.14.12</byte-buddy.version>
+        <!-- SonarQube Configuration -->
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.projectKey>br.com.consultor:consultor-pai</sonar.projectKey>
+        <sonar.projectName>Sistema de Gestão Enterprise (Jakarta EE 10)</sonar.projectName>
+        <sonar.language>java</sonar.language>
+        <sonar.token>${env.SONAR_TOKEN}</sonar.token>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <!-- JaCoCo Integration -->
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ${project.basedir}/../target/site/jacoco/jacoco.xml,
+            ${project.basedir}/target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <modules>
@@ -247,6 +260,11 @@
                     <configuration>
                         <argLine>${failsafeArgLine} --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.11.0.3922</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

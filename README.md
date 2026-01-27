@@ -1,4 +1,4 @@
-# Aplicação Jakarta EE 10 - Utilizando Gemini CLI
+# Aplicação Jakarta EE 10 - Java 21 - Utilizando Gemini CLI
 
 Este projeto é uma aplicação multi-módulos Jakarta EE 10 demonstrando uma funcionalidade CRUD (Criar, Ler, Atualizar, Deletar) básica para uma entidade `Cliente`. Ele aproveita as especificações modernas do Java EE, Maven para gerenciamento de build, Wildfly como servidor de aplicação, JPA para persistência e JSF com PrimeFaces para a interface de usuário web.
 
@@ -121,4 +121,21 @@ Você deverá ver a página "Cadastro de Clientes", onde pode adicionar, visuali
 
 ## Configs:
 
-mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=Am0r@M0r157*
+Para rodar o Sonarqube tem ajustar a utilização de memoria com o comando abaixo utilizando o Rancher Desktop por causa do ElasticSearch integrado.
+
+```
+rdctl shell sudo sysctl -w vm.max_map_count=262144
+```
+
+Gerar token no sonar e setar a variavel de ambinte com o valor:
+
+```
+export SONAR_TOKEN="seu_token_aqui"
+```
+
+
+Integrar com o Sonarqube e enviar relatorios para a instancia do Sonarqube:
+
+```
+mvn sonar:sonar
+```
