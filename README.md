@@ -54,7 +54,7 @@ O projeto está organizado em três módulos Maven principais:
 ## Configuração e Build
 
 1.  **Pré-requisitos:**
-    *   Java Development Kit (JDK) 11 ou superior.
+    *   Java Development Kit (JDK) 21 ou superior.
     *   Apache Maven 3.6.0 ou superior.
     *   Docker e Docker Compose (se você planeja usar a configuração conteinerizada).
 
@@ -98,7 +98,7 @@ A maneira mais fácil de fazer a aplicação funcionar é usando o Docker Compos
 
 Se você preferir implantar manualmente em um servidor Wildfly existente:
 
-1.  Certifique-se de ter um servidor Wildfly 27+ em execução.
+1.  Certifique-se de ter um servidor Wildfly 30+ em execução.
 2.  Construa o projeto usando `mvn clean install`.
 3.  Configure um data source MariaDB em seu servidor Wildfly com o nome JNDI `java:jboss/datasources/MyDS` e conecte-o à sua instância MariaDB.
     *   Você precisará instalar o driver JDBC do MariaDB como um módulo do Wildfly.
@@ -117,3 +117,8 @@ Assim que a aplicação estiver implantada e em execução (seja via Docker Comp
 2.  Acesse a aplicação em: `http://localhost:8080/consultor/cliente.jsf` (se estiver executando localmente ou via Docker Compose, assumindo que a porta 8080 está exposta).
 
 Você deverá ver a página "Cadastro de Clientes", onde pode adicionar, visualizar e gerenciar registros de clientes.
+
+
+## Configs:
+
+mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=Am0r@M0r157*

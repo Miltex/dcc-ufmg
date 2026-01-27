@@ -33,7 +33,15 @@ services:
     ports:
       - "8080:8080"
       - "9990:9990" # Wildfly Management Console
-    command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    command: >
+      bash -c "
+        echo 'Waiting for mariadb to be ready...'
+        while ! timeout 1s bash -c \"echo > /dev/tcp/mariadb-db/3306\" 2>/dev/null; do
+          sleep 1
+        done
+        echo 'MariaDB is ready, starting WildFly...'
+        /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+      "
     depends_on:
       - mariadb
     environment:
