@@ -60,7 +60,7 @@ public abstract class AbstractAcceptanceTest {
     @AfterEach
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            //driver.quit(); // Ajustar o momento de fechar o webdrive chrome
         }
     }
 

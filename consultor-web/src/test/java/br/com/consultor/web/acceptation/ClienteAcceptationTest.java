@@ -3,6 +3,7 @@ package br.com.consultor.web.acceptation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,8 +34,10 @@ public class ClienteAcceptationTest extends AbstractAcceptanceTest {
         inputIdade.sendKeys("30");
 
         WebElement inputAltura = driver.findElement(By.id("form:altura_input"));
+        inputAltura.click();
         inputAltura.clear();
-        inputAltura.sendKeys("10");
+        inputAltura.sendKeys("1.78");
+        inputAltura.sendKeys(Keys.TAB);
         
         takeSnapshot("2_formulario_preenchido");
 
