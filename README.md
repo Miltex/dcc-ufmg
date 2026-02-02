@@ -145,5 +145,3 @@ Integrar com o Sonarqube e enviar relatorios para a instancia do Sonarqube:
 ```
 mvn sonar:sonar
 ```
-
-export SONAR_TOKEN="sqa_93f4191988228b10bae698c20e008ab1e9a6f976"
