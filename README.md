@@ -1,4 +1,4 @@
-# Aplicação Jakarta EE 10 - Utilizando Gemini CLI
+# Aplicação Jakarta EE 10 - Java 21 - Utilizando Gemini CLI
 
 Este projeto é uma aplicação multi-módulos Jakarta EE 10 demonstrando uma funcionalidade CRUD (Criar, Ler, Atualizar, Deletar) básica para uma entidade `Cliente`. Ele aproveita as especificações modernas do Java EE, Maven para gerenciamento de build, Wildfly como servidor de aplicação, JPA para persistência e JSF com PrimeFaces para a interface de usuário web.
 
@@ -54,7 +54,7 @@ O projeto está organizado em três módulos Maven principais:
 ## Configuração e Build
 
 1.  **Pré-requisitos:**
-    *   Java Development Kit (JDK) 11 ou superior.
+    *   Java Development Kit (JDK) 21 ou superior.
     *   Apache Maven 3.6.0 ou superior.
     *   Docker e Docker Compose (se você planeja usar a configuração conteinerizada).
 
@@ -98,7 +98,7 @@ A maneira mais fácil de fazer a aplicação funcionar é usando o Docker Compos
 
 Se você preferir implantar manualmente em um servidor Wildfly existente:
 
-1.  Certifique-se de ter um servidor Wildfly 27+ em execução.
+1.  Certifique-se de ter um servidor Wildfly 30+ em execução.
 2.  Construa o projeto usando `mvn clean install`.
 3.  Configure um data source MariaDB em seu servidor Wildfly com o nome JNDI `java:jboss/datasources/MyDS` e conecte-o à sua instância MariaDB.
     *   Você precisará instalar o driver JDBC do MariaDB como um módulo do Wildfly.
@@ -117,3 +117,25 @@ Assim que a aplicação estiver implantada e em execução (seja via Docker Comp
 2.  Acesse a aplicação em: `http://localhost:8080/consultor/cliente.jsf` (se estiver executando localmente ou via Docker Compose, assumindo que a porta 8080 está exposta).
 
 Você deverá ver a página "Cadastro de Clientes", onde pode adicionar, visualizar e gerenciar registros de clientes.
+
+
+## Configs:
+
+Para rodar o Sonarqube tem ajustar a utilização de memoria com o comando abaixo utilizando o Rancher Desktop por causa do ElasticSearch integrado.
+
+```
+rdctl shell sudo sysctl -w vm.max_map_count=262144
+```
+
+Gerar token no sonar e setar a variavel de ambinte com o valor:
+
+```
+export SONAR_TOKEN="seu_token_aqui"
+```
+
+
+Integrar com o Sonarqube e enviar relatorios para a instancia do Sonarqube:
+
+```
+mvn sonar:sonar
+```

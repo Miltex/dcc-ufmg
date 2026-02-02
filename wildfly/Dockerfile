@@ -1,4 +1,4 @@
-FROM quay.io/wildfly/wildfly:latest-jdk11
+FROM quay.io/wildfly/wildfly:latest-jdk21
 
 # Set up an environment variable for the driver version
 ENV MARIADB_DRIVER_VERSION=3.1.4
@@ -17,7 +17,7 @@ RUN \
   curl -o /opt/jboss/wildfly/modules/system/layers/base/org/mariadb/main/mariadb-java-client.jar https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/${MARIADB_DRIVER_VERSION}/mariadb-java-client-${MARIADB_DRIVER_VERSION}.jar && \
   \
   # Create module.xml
-  echo '<?xml version="1.0" encoding="UTF-8"?><module xmlns="urn:jboss:module:1.3" name="org.mariadb"><resources><resource-root path="mariadb-java-client.jar"/></resources><dependencies><module name="javax.api"/><module name="javax.transaction.api"/></dependencies></module>' > /opt/jboss/wildfly/modules/system/layers/base/org/mariadb/main/module.xml && \
+  echo '<?xml version="1.0" encoding="UTF-8"?><module xmlns="urn:jboss:module:1.3" name="org.mariadb"><resources><resource-root path="mariadb-java-client.jar"/></resources><dependencies><module name="jakarta.transaction.api"/></dependencies></module>' > /opt/jboss/wildfly/modules/system/layers/base/org/mariadb/main/module.xml && \
   \
   # Use jboss-cli to configure the driver and datasource
   echo 'embed-server --std-out=echo' > /tmp/datasource_setup.cli && \

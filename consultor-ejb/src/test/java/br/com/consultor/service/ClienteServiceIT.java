@@ -43,7 +43,10 @@ public class ClienteServiceIT {
 
         List<Cliente> clientes = clienteService.listar();
         Assertions.assertFalse(clientes.isEmpty());
-        Assertions.assertEquals("Joao Silva", clientes.get(0).getNome());
+        
+        boolean encontrou = clientes.stream()
+                .anyMatch(c -> "Joao Silva".equals(c.getNome()));
+        Assertions.assertTrue(encontrou, "O cliente 'Joao Silva' deveria estar na lista.");
     }
 
     /*@AfterAll

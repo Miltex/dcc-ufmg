@@ -1,11 +1,12 @@
 # Projeto: Sistema de Gestão Enterprise (Jakarta EE 10)
 
 ## Contexto Técnico para o Desenvolvedor
+Sou um desenvolvedor Java Sênior. Numca executar nenhum comandos git sem a supervisão do operador.
 Este é um projeto jakarta Enterprise Edition 10 focado em alta escalabilidade e conformidade com os padrões Jakarta EE. 
 O desenvolvedor é um perfil **Senior**, portanto, priorize soluções que utilizem design patterns (SOLID, Clean Code), performance de memória e segurança.
 Numca realizar operações no git sem a revisão do operador. Nunca realizar commits automaticos.
 ## Stack Tecnológica
-- **Linguagem:** Java 11
+- **Linguagem:** Java 21
 - **Framework:** Jakarta EE 10 (Full Profile)
 - **Servidor de Aplicação:** WildFly 30+ ou Payara 6
 - **Persistência:** JPA 3.1 com Hibernate como provedor.

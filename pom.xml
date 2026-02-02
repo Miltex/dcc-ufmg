@@ -12,11 +12,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <jakartaee.version>10.0.0</jakartaee.version>
         <junit.version>5.9.2</junit.version>
-        <mockito.version>5.2.0</mockito.version>
+        <mockito.version>5.11.0</mockito.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <arquillian.version>1.7.0.Final</arquillian.version>
         <wildfly.arquillian.version>5.0.1.Final</wildfly.arquillian.version>
@@ -25,6 +25,20 @@
         <selenium.version>3.14.0</selenium.version>
         <jacoco.version>0.8.11</jacoco.version>
         <arquillian.transaction.version>2.0.0</arquillian.transaction.version>
+        <byte-buddy.version>1.14.12</byte-buddy.version>
+        <!-- SonarQube Configuration -->
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.projectKey>br.com.consultor:consultor-pai</sonar.projectKey>
+        <sonar.projectName>Enterprise (Jakarta EE 10) - Java 21</sonar.projectName>
+        <sonar.language>java</sonar.language>
+        <sonar.token>${env.SONAR_TOKEN}</sonar.token>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <!-- JaCoCo Integration -->
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ${project.basedir}/../target/site/jacoco/jacoco.xml,
+            ${project.basedir}/target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <modules>
@@ -79,6 +93,16 @@
                 <artifactId>mariadb-java-client</artifactId>
                 <version>3.1.2</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${byte-buddy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy-agent</artifactId>
+                <version>${byte-buddy.version}</version>
             </dependency>
 
             <!-- Test Dependencies -->
@@ -173,6 +197,12 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/steadystate/css/parser/**</exclude>
+                        <exclude>**/SACParserCSS3TokenManager*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -234,8 +264,13 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <argLine>${failsafeArgLine}</argLine>
+                        <argLine>${failsafeArgLine} --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.11.0.3922</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
