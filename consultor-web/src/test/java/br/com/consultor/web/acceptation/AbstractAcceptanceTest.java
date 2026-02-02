@@ -57,10 +57,9 @@ public abstract class AbstractAcceptanceTest {
         driver = new ChromeDriver(options);
     }
 
-    @AfterEach
-    public void tearDown() {
+    protected void quitDriver() {
         if (driver != null) {
-            //driver.quit(); // Ajustar o momento de fechar o webdrive chrome
+            driver.quit();
         }
     }
 
@@ -72,16 +71,19 @@ public abstract class AbstractAcceptanceTest {
         @Override
         public void testSuccessful(ExtensionContext context) {
             captureScreenshot(context, "SUCCESS");
+            quitDriver();
         }
 
         @Override
         public void testFailed(ExtensionContext context, Throwable cause) {
             captureScreenshot(context, "FAILED");
+            quitDriver();
         }
         
         @Override
         public void testAborted(ExtensionContext context, Throwable cause) {
             captureScreenshot(context, "ABORTED");
+            quitDriver();
         }
     };
 
