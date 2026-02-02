@@ -127,12 +127,18 @@ Para rodar o Sonarqube tem ajustar a utilização de memoria com o comando abaix
 rdctl shell sudo sysctl -w vm.max_map_count=262144
 ```
 
+Antes de integrar com o sonar deve-se subir o ambiente com o comando abaixo:
+
+```
+cd sonarqube
+docker compose up -d
+```
+
 Gerar token no sonar e setar a variavel de ambinte com o valor:
 
 ```
 export SONAR_TOKEN="seu_token_aqui"
 ```
-
 
 Integrar com o Sonarqube e enviar relatorios para a instancia do Sonarqube:
 
