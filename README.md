@@ -118,8 +118,20 @@ Assim que a aplicação estiver implantada e em execução (seja via Docker Comp
 
 Você deverá ver a página "Cadastro de Clientes", onde pode adicionar, visualizar e gerenciar registros de clientes.
 
+## Flyway Configs:
 
-## Configs:
+Agora você pode executar as migrations via Maven com o comando:
+
+(estando na raiz do projeto) ou diretamente dentro do diretório consultor-ejb.
+
+###### Antes de executar esse comando o banco de dados deve está em execução.
+
+###### Este comando deve ser executado antes de realizar o deploy da aplicação.
+```
+mvn flyway:migrate -pl consultor-ejb
+```
+
+## Sonar Configs:
 
 Para rodar o Sonarqube tem ajustar a utilização de memoria com o comando abaixo utilizando o Rancher Desktop por causa do ElasticSearch integrado.
 

@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS Produto (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    valor DOUBLE NOT NULL,
+    quantidade INT NOT NULL,
+    nome VARCHAR(255),
+    descricao VARCHAR(255),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;

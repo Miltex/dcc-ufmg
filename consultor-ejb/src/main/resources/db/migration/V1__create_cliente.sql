@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS Cliente (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    altura DOUBLE NOT NULL,
+    idade INT NOT NULL,
+    nome VARCHAR(255),
+    sexo VARCHAR(255),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
