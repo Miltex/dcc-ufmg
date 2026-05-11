@@ -2,7 +2,10 @@ package br.com.consultor.service;
 
 import br.com.consultor.entity.Cliente;
 
+import br.com.consultor.msg.dto.NotificacaoRecord;
+import br.com.consultor.msg.producer.NotificacaoProducer;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
@@ -13,7 +16,11 @@ public class ClienteService {
     @PersistenceContext
     private EntityManager em;
 
+    @Inject
+    private NotificacaoProducer produtor;
+
     public void salvar(Cliente cliente) {
+        produtor.enviarNotificacao(new NotificacaoRecord("NotificacaoQueue","Usuario Adicionado"));
         em.merge(cliente);
     }
 

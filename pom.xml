@@ -44,6 +44,7 @@
     <modules>
         <module>consultor-ejb</module>
         <module>consultor-web</module>
+        <module>consultor-msg</module>
         <module>consultor-ear</module>
     </modules>
 

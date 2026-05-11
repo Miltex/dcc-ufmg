@@ -16,6 +16,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>br.com.consultor</groupId>
+            <artifactId>consultor-msg</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>9.22.3</version>

@@ -7,6 +7,9 @@
         <ejb>consultor-ejb.jar</ejb>
     </module>
     <module>
+        <ejb>consultor-msg.jar</ejb>
+    </module>
+    <module>
         <web>
             <web-uri>consultor-web.war</web-uri>
             <context-root>/consultor</context-root>

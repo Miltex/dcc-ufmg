@@ -25,13 +25,13 @@ services:
 
   wildfly:
     build:
-      context: .
-      dockerfile: ./wildfly/Dockerfile
+      context: ..
+      dockerfile: wildfly/Dockerfile
     container_name: wildfly-server
     ports:
       - "8080:8080"
       - "9990:9990" # Wildfly Management Console
-    command: 
+    command:
       - bash
       - -c
       - |
@@ -43,20 +43,6 @@ services:
         /opt/jboss/wildfly/bin/standalone.sh -c standalone-full.xml -b 0.0.0.0 -bmanagement 0.0.0.0
     depends_on:
       - mariadb
-    environment:
-      # Placeholder for database connection details.
-      # You will likely need to configure a proper JNDI datasource within Wildfly.
-      # Example for Wildfly CLI:
-      # /subsystem=datasources/jdbc-driver=mariadb:add(driver-name=mariadb, driver-module-name=org.mariadb.jdbc, driver-class-name=org.mariadb.jdbc.Driver)
-      # /subsystem=datasources/data-source=MyDS:add(connection-url="jdbc:mariadb://mariadb-db:3306/crud_db", jndi-name="java:jboss/datasources/MyDS", enabled=true, user-name=crud_user, password=crud_password, driver-name=mariadb)
-      DB_HOST: mariadb-db
-      DB_PORT: 3306
-      DB_NAME: crud_db
-      DB_USER: crud_user
-      DB_PASSWORD: crud_password
-    # Uncomment the following line if you want to mount a directory for external deployments or configuration
-    # volumes:
-    #   - ./deployments:/opt/jboss/wildfly/standalone/deployments/
 
 volumes:
   db_data:

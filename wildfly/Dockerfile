@@ -3,10 +3,16 @@ FROM quay.io/wildfly/wildfly:latest-jdk21
 # Set up an environment variable for the driver version
 ENV MARIADB_DRIVER_VERSION=3.1.4
 
-# 1. Create Admin User
-# 2. Install MariaDB driver as a module
-# 3. Configure the datasource
-RUN \
+# Adicionado JMS
+# Copia o script CLI para dentro do container
+COPY wildfly/configure-jms.cli /opt/jboss/wildfly/bin/
+
+# Executa o CLI para aplicar as configurações no arquivo standalone-full.xml
+# 1. Configure JMS
+# 2. Create Admin User
+# 3. Install MariaDB driver as a module
+# 4. Configure the datasource
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/opt/jboss/wildfly/bin/configure-jms.cli && \
   # Create Admin user
   /opt/jboss/wildfly/bin/add-user.sh admin admin --silent && \
   \
@@ -19,13 +25,17 @@ RUN \
   # Create module.xml
   echo '<?xml version="1.0" encoding="UTF-8"?><module xmlns="urn:jboss:module:1.3" name="org.mariadb"><resources><resource-root path="mariadb-java-client.jar"/></resources><dependencies><module name="jakarta.transaction.api"/></dependencies></module>' > /opt/jboss/wildfly/modules/system/layers/base/org/mariadb/main/module.xml && \
   \
-  # Use jboss-cli to configure the driver and datasource
-  echo 'embed-server --std-out=echo' > /tmp/datasource_setup.cli && \
+  # Use jboss-cli to configure the driver and datasource in standalone-full.xml
+  echo 'embed-server --server-config=standalone-full.xml --std-out=echo' > /tmp/datasource_setup.cli && \
   echo '/subsystem=datasources/jdbc-driver=mariadb:add(driver-name=mariadb,driver-module-name=org.mariadb,driver-class-name=org.mariadb.jdbc.Driver)' >> /tmp/datasource_setup.cli && \
   echo '/subsystem=datasources/data-source=MyDS:add(jndi-name=java:jboss/datasources/MyDS,driver-name=mariadb,connection-url="jdbc:mariadb://mariadb-db:3306/crud_db",user-name=crud_user,password=crud_password,enabled=true)' >> /tmp/datasource_setup.cli && \
   echo 'stop-embedded-server' >> /tmp/datasource_setup.cli && \
   /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/datasource_setup.cli && \
-  rm /tmp/datasource_setup.cli
+  rm /tmp/datasource_setup.cli && \
+  rm -rf /opt/jboss/wildfly/standalone/configuration/standalone_xml_history
 
 # Copy the application EAR. This should be the last step.
 COPY consultor-ear/target/consultor-ear.ear /opt/jboss/wildfly/standalone/deployments/
+
+# Define que o WildFly deve iniciar com o perfil FULL (necessário para JMS)
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-c", "standalone-full.xml", "-b", "0.0.0.0"]
